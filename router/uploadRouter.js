@@ -2,11 +2,18 @@ const express=require('express')
 const router=express.Router()
 const multer=require('multer')
 const path=require('path')
+const FileModel=require('../db/model/uploadModel')
 
 var storage=multer.diskStorage({
   //设置文件上传后的路径，uploads文件会自动创建
   destination:(req,file,cb)=>{
-    cb(null,'./uploads')
+    if(req.route.path=='/file'){
+      cb(null,'H:/_myResult/upload/file')
+    }
+    else{
+      cb(null,'H:/_myResult/upload/img')
+    }
+   
   },
   //文件过滤函数
   filtFilter:function(req,file,cb){
@@ -39,10 +46,21 @@ router.post('/img',upload.single('test'),(req,res)=>{
   }else if(!types.includes(tmpType)){
     return res.send({err:'-2',msg:'文件类型上传有误'})
   }else{
-    res.send({
-      err:0,
-      msg:'文件上传成功',
-      url:`http:127.0.0.1/public/img/${req.file.filename}`
+    FileModel.create({
+      fileName:req.file.filename,
+      fileType:[1],
+      fileDesrc:'测试描述是否可以存储在数据库',
+      fileSrc:`http:127.0.0.1/public/img/${req.file.filename}`,
+      id:'123345'
+    },(err,dat)=>{
+      if(err) {res.send({err:1,msg:'文件存储失败',errData:err})}
+      else{
+        res.send({
+          err:0,
+          msg:'文件上传成功',
+          url:`http:127.0.0.1/public/img/${req.file.filename}`
+        })
+      }
     })
   }
   console.log(req.file)
@@ -59,9 +77,9 @@ router.post('/file',upload.single('test'),(req,res)=>{
     res.send({
       err:0,
       msg:'文件上传成功',
-      url:`http:127.0.0.1/public/img/${req.file.filename}`
+      url:`http:127.0.0.1/H:/_myResult/upload/${req.file.filename}`
     })
   }
-  console.log(req.file)
+  // console.log(req.file)
 })
 module.exports=router

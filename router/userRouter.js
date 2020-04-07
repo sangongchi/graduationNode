@@ -24,7 +24,6 @@ router.post('/login',async (req,res)=>{
 })
 router.post('/register',async(req,res)=>{
   let {username,password}=req.body
-  var hashPassworld
   const isUserHas=await User.findOne({username:username})
   if(isUserHas){
     res.send({message:"该用户名已注册，请重新输入"})

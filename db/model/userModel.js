@@ -7,6 +7,10 @@ const UserSchema=new mongoClient.Schema({
   },
   password:{
     type:String
+  },
+  id:{
+    type:String,
+    unique:true
   }
 })
 
