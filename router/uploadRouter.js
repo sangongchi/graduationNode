@@ -65,9 +65,6 @@ router.post('/img', upload.single('file'), (req, res) => {
       .catch((err) => {
         res.send({ err: 1, msg: err });
       })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 });
 router.post('/file', upload.single('file'), (req, res) => {

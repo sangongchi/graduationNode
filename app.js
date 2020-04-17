@@ -37,7 +37,15 @@ const userRouter = require('./router/userRouter');
 const uploadRouter = require('./router/uploadRouter');
 app.use('/user', userRouter); //引入上边的user路由并使用 app.use 进行拦截
 app.use('/upload', uploadRouter);
-
+app.all("*",(req,res,next)=>{
+  res.header("Access-Control-Allow-Origin","*");
+  //允许的header类型
+  res.header("Access-Control-Allow-Headers","content-type");
+  if (req.method.toLowerCase() == 'options')
+      res.send(200);  //让options尝试请求快速结束
+  else
+      next();
+});
 app.get('/', function (req, res) {
   res.send({ msg: 'you just sent a GET request, friend' });
 });
