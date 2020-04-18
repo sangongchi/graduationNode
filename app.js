@@ -21,7 +21,7 @@ app.use(morgan('short', { stream: accessLogStream }));
 app.all('*', function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   //Access-Control-Allow-Headers ,可根据浏览器的F12查看,把对应的粘贴在这里就行
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
   res.header('Access-Control-Allow-Methods', '*');
   // res.header('Content-Type', 'application/json;charset=utf-8');
   next();
@@ -35,16 +35,17 @@ app.use((req, res, next) => {
 
 const userRouter = require('./router/userRouter');
 const uploadRouter = require('./router/uploadRouter');
+const guidRouter = require('./router/guidsRouter');
 app.use('/user', userRouter); //引入上边的user路由并使用 app.use 进行拦截
 app.use('/upload', uploadRouter);
-app.all("*",(req,res,next)=>{
-  res.header("Access-Control-Allow-Origin","*");
+app.use('/guid', guidRouter);
+app.all('*', (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
   //允许的header类型
-  res.header("Access-Control-Allow-Headers","content-type");
-  if (req.method.toLowerCase() == 'options')
-      res.send(200);  //让options尝试请求快速结束
-  else
-      next();
+  res.header('Access-Control-Allow-Headers', 'content-type');
+  if (req.method.toLowerCase() == 'options') res.send(200);
+  //让options尝试请求快速结束
+  else next();
 });
 app.get('/', function (req, res) {
   res.send({ msg: 'you just sent a GET request, friend' });
@@ -62,7 +63,7 @@ app.get('/download', (req, res) => {
     }
   });
 });
-app.get('/getCodeImg', (req, res) => {
+app.get('/code/getCodeImg', (req, res) => {
   let option = {
     size: 4,
     ingoreChars: '0o1i',
