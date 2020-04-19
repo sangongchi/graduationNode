@@ -50,6 +50,9 @@ router.post('/img', upload.single('file'), (req, res) => {
     let params = {
       fileName: req.file.filename,
       fileSrc: `http:127.0.0.1/public/img/${req.file.filename}`,
+      userId: '123',
+      classType: '2',
+      fileDesr: '45646',
     };
     mongoApi
       .save(FileModel, params)

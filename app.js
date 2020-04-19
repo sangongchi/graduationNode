@@ -36,9 +36,11 @@ app.use((req, res, next) => {
 const userRouter = require('./router/userRouter');
 const uploadRouter = require('./router/uploadRouter');
 const guidRouter = require('./router/guidsRouter');
+const fileRouter = require('./router/fileRouter');
 app.use('/user', userRouter); //引入上边的user路由并使用 app.use 进行拦截
 app.use('/upload', uploadRouter);
 app.use('/guid', guidRouter);
+app.use('/seeFile', fileRouter);
 app.all('*', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   //允许的header类型
