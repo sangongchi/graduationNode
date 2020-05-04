@@ -8,17 +8,31 @@ const fileSchema = new mongoClient.Schema({
   fileName: {
     type: String,
   },
-  fileSrc: {
+  fileDesr: {
     type: String,
   },
   classType: {
     type: Number,
   },
-  fileDesr: {
+  className: {
     type: String,
   },
+  fileSrc: {
+    type: String,
+  },
+  imgSrc:{
+    type:String
+  },
+  fileOriginalname:{
+    type:String
+  },
+  imgOriginalname:{
+    type:String
+  },
+  imgType:{
+    type:String
+  }
 });
-
 //将schema 转化为用户数据模型
 const File = mongoClient.model('totalFile', fileSchema);
 
