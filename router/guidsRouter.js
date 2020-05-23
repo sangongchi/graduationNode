@@ -8,7 +8,7 @@ router.post('/guidSystems', async (req, res) => {
   let systems = [
     {
       ImgSrc:
-      'http://192.168.3.129:9999/img/top1.png',
+      'http://sangongchi.top:9999/img/top1.png',
       identify: 'name',
       id: 'id',
       resPath: '/#/home',
@@ -16,7 +16,7 @@ router.post('/guidSystems', async (req, res) => {
     },
     {
       ImgSrc:
-      'http://192.168.3.129:9999/img/top2.png',
+      'http://sangongchi.top:9999/img/top2.png',
       identify: 'name',
       id: 'id',
       resPath: 'http://sangongchi.top:8008',
@@ -24,7 +24,7 @@ router.post('/guidSystems', async (req, res) => {
     },
     {
       ImgSrc:
-        'http://192.168.3.129:9999/img/top3.png',
+        'http://sangongchi.top:9999/img/top3.png',
       identify: 'name',
       id: 'id',
       resPath: 'http://sangongchi.top:7300',
@@ -32,7 +32,7 @@ router.post('/guidSystems', async (req, res) => {
     },
     {
       ImgSrc:
-      'http://192.168.3.129:9999/img/top3.png',
+      'http://sangongchi.top:9999/img/top3.png',
       identify: 'name',
       id: 'id',
       resPath: 'http://sangongchi.top:8080',

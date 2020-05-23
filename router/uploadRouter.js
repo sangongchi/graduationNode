@@ -54,7 +54,7 @@ router.post('/img', upload.single('file'), (req, res) => {
     let params = {
       originalname:req.file.originalname,
       fileName: req.file.filename,
-      fileSrc: `http://192.168.3.129:9999/img/${req.file.filename}`,
+      fileSrc: `http://sangongchi.top:9999/img/${req.file.filename}`,
     };
     mongoApi
       .save(imgFileModel, params)
@@ -63,7 +63,7 @@ router.post('/img', upload.single('file'), (req, res) => {
           err: 0,
           msg: '文件上传成功',
           originalname:req.file.originalname,
-          url: `http://192.168.3.129:9999/img/${req.file.filename}`,
+          url: `http://sangongchi.top:9999/img/${req.file.filename}`,
         });
       })
       .catch((err) => {
@@ -79,14 +79,14 @@ router.post('/file', upload.single('file'), (req, res) => {
     let params={
       originalname:req.file.originalname,
       fileName: req.file.filename,
-      fileSrc: `http://192.168.3.129:9999/file/${req.file.filename}`,
+      fileSrc: `http://sangongchi.top:9999/file/${req.file.filename}`,
     }
     mongoApi.save(fileModel,params).then(result=>{
       res.send({
         err: 0,
         msg: '文件上传成功',
         originalname:req.file.originalname,
-        url: `http://192.168.3.129:9999/file/${req.file.filename}`,
+        url: `http://sangongchi.top:9999/file/${req.file.filename}`,
       });
     }).catch(err=>{
       res.send({err:1,message:'have question'})
@@ -101,14 +101,14 @@ router.post('/video',upload.single('file'),  (req, res) => {
     let params={
       originalname:req.file.originalname,
       fileName: req.file.originalname,
-      fileSrc: `http://192.168.3.129:9999/video/${req.file.filename}`,
+      fileSrc: `http://sangongchi.top:9999/video/${req.file.filename}`,
     }
     mongoApi.save(videoModel,params).then(result=>{
       res.send({
         err: 0,
         msg: '文件上传成功',
         originalname:req.file.originalname,
-        url: `http://192.168.3.129:9999/video/${req.file.filename}`,
+        url: `http://sangongchi.top:9999/video/${req.file.filename}`,
       });
     }).catch(err=>{
       res.send({err:1,message:'have question'})
