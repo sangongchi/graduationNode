@@ -36,11 +36,9 @@ app.use((req, res, next) => {
 const userRouter = require('./router/userRouter');
 const uploadRouter = require('./router/uploadRouter');
 const guidRouter = require('./router/guidsRouter');
-const fileRouter = require('./router/fileRouter');
 app.use('/user', userRouter); //引入上边的user路由并使用 app.use 进行拦截
 app.use('/upload', uploadRouter);
 app.use('/guid', guidRouter);
-app.use('/seeFile', fileRouter);
 app.all('*', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   //允许的header类型
@@ -52,18 +50,16 @@ app.all('*', (req, res, next) => {
 app.get('/', function (req, res) {
   res.send({ msg: 'you just sent a GET request, friend' });
 });
-app.get('/downloadUrl', (req, res) => {
-  let downloadUrl='http://192.168.3.129:3000/download?fileHref='+req.query.fileHref
-  res.send({err:0,downloadUrl:downloadUrl})
-});
 app.get('/download', (req, res) => {
-  let fileHref='/pei/staticFile'+req.query.fileHref
-  res.download(fileHref, (err) => {
+  console.log(req.query);
+  if (req.query.name == 'img') {
+    fileName = './uploads/1583337027448.png';
+  } else {
+    fileName = '../flutter——pdf/10.Flutter 页面布局 页面布局Wrap组件.pdf';
+  }
+  res.download(fileName, (err) => {
     if (err) {
       res.send('文件下载失败');
-    }else{
-      let downloadUrl='http://192.168.3.129:3000/download?fileHref='+fileHref
-      console.log(downloadUrl)
     }
   });
 });

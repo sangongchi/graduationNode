@@ -2,9 +2,6 @@ const mongoClient = require('mongoose');
 
 //建立用户表
 const fileSchema = new mongoClient.Schema({
-  userId: {
-    type: String,
-  },
   fileName: {
     type: String,
   },
