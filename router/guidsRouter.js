@@ -12,7 +12,7 @@ router.post('/guidSystems', async (req, res) => {
       identify: 'name',
       id: 'id',
       resPath: '/#/home',
-      resName: 'personal system',
+      resName: '作业管理系统',
     },
     {
       ImgSrc:
@@ -20,11 +20,11 @@ router.post('/guidSystems', async (req, res) => {
       identify: 'name',
       id: 'id',
       resPath: 'http://sangongchi.top:8008',
-      resName: 'personal blog',
+      resName: '博客平台',
     },
     {
       ImgSrc:
-        'http://sangongchi.top:9999/img/top3.png',
+        'http://sangongchi.top:9999/img/top4.png',
       identify: 'name',
       id: 'id',
       resPath: 'http://sangongchi.top:7300',
